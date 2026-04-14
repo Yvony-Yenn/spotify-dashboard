@@ -147,6 +147,10 @@ with tab1:
         hoverlabel=dict(bgcolor="white", font_color="#191414"),
     )
     st.plotly_chart(fig_scatter, use_container_width=True)
+    st.caption(
+        "Each dot represents a track. Hover over a point to see its title, artist, and genre. "
+        "Use the controls above to swap axes and explore how different audio features relate to one another or to popularity."
+    )
 
     st.markdown('<p class="section-header">Popularity Distribution by Genre</p>', unsafe_allow_html=True)
     fig_box = px.box(
@@ -162,6 +166,11 @@ with tab1:
         yaxis=dict(gridcolor="#EEEEEE"),
     )
     st.plotly_chart(fig_box, use_container_width=True)
+    st.caption(
+        "The box plot shows the spread of popularity scores within each genre. "
+        "The line inside the box is the median; the box edges represent the 25th and 75th percentiles. "
+        "Genres with a higher median and narrower box tend to produce more consistently popular tracks."
+    )
 
 # ━━━ Tab 2: Genre Analysis ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 with tab2:
@@ -197,6 +206,11 @@ with tab2:
             height=420, margin=dict(t=30, b=20),
         )
         st.plotly_chart(fig_radar, use_container_width=True)
+        st.caption(
+            "Each axis represents an average audio feature value (0–1) for that genre. "
+            "A larger filled area means the genre scores highly across multiple dimensions. "
+            "Click a genre name in the legend to show or hide it."
+        )
 
     with col_right:
         st.markdown('<p class="section-header">Feature Correlation Heatmap</p>', unsafe_allow_html=True)
@@ -214,6 +228,11 @@ with tab2:
             height=420, margin=dict(t=30, b=20),
         )
         st.plotly_chart(fig_heat, use_container_width=True)
+        st.caption(
+            "Green cells indicate a positive correlation between two features; red cells indicate a negative one. "
+            "The bottom row (popularity) is especially useful — features closer to green have a stronger positive "
+            "association with a track's popularity score."
+        )
 
     st.markdown('<p class="section-header">Average Feature by Genre</p>', unsafe_allow_html=True)
     bar_feature_label = st.selectbox(
@@ -240,10 +259,18 @@ with tab2:
         yaxis=dict(gridcolor="#EEEEEE"),
     )
     st.plotly_chart(fig_bar, use_container_width=True)
+    st.caption(
+        "Bars show the average value of the selected feature across all filtered tracks in each genre. "
+        "Switch the feature dropdown above to compare how genres differ in energy, danceability, valence, and more."
+    )
 
 # ━━━ Tab 3: Track Explorer ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 with tab3:
     st.markdown('<p class="section-header">Search & Filter Tracks</p>', unsafe_allow_html=True)
+    st.markdown(
+        "Search for a specific artist or use the advanced filters to narrow down tracks by audio feature ranges. "
+        "Results update instantly and are sorted by the column you choose."
+    )
 
     col_s1, col_s2 = st.columns([3, 1])
     with col_s1:
