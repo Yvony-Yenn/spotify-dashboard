@@ -33,7 +33,7 @@ st.markdown("""
 # ── Load data ──────────────────────────────────────────────────────────────────
 @st.cache_data
 def load_data():
-    df = pd.read_csv("spotify-tracks-dataset.csv")
+    df = pd.read_csv("Data/spotify-tracks-dataset.csv")
     df = df.drop(columns=["Unnamed: 0"], errors="ignore")
     df = df.dropna(subset=["popularity", "track_genre"])
     df["duration_min"] = (df["duration_ms"] / 60000).round(2)
